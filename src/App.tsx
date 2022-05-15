@@ -53,8 +53,12 @@ const MessageRow = (props: { message: Message; handleEventNameClick: (eventName:
   const messageBody = useMemo(() => {
     if (!message.args.length) {
       return (
-        <Text block variant="small" style={{ fontStyle: 'italic', padding: 5, maxWidth: '100%' }}>
-          [empty]
+        <Text
+          block
+          variant="small"
+          style={{ fontStyle: 'italic', padding: 5, maxWidth: '100%', color: theme.palette.neutralSecondary }}
+        >
+          {'< empty >'}
         </Text>
       );
     }
@@ -64,9 +68,9 @@ const MessageRow = (props: { message: Message; handleEventNameClick: (eventName:
 
   return (
     <tr>
-      <td style={{ backgroundColor: eventNameBgColor, padding: 5, minWidth: 120 }} align="right">
+      <td style={{ backgroundColor: eventNameBgColor }} align="right">
         <Text
-          style={{ fontWeight: 'bold', fontStyle: 'italic', cursor: 'pointer' }}
+          style={{ fontWeight: 'bold', fontStyle: 'italic', cursor: 'pointer', padding: 5 }}
           onClick={() => handleEventNameClick(message.eventName)}
         >
           {message.eventName}
@@ -165,7 +169,7 @@ const App = () => {
         <table style={{ border: 0 }}>
           <thead>
             <tr>
-              <th>Event</th>
+              <th style={{ minWidth: 120 }}>Event</th>
               <th>Args</th>
             </tr>
           </thead>
