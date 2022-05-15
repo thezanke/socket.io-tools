@@ -1,4 +1,4 @@
-import { CommandBar, FocusTrapZone, PrimaryButton, Stack, Text, TextField, useTheme } from '@fluentui/react';
+import { PrimaryButton, Stack, Text, TextField, useTheme } from '@fluentui/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import JsonView from 'react-json-view';
 import { io, Socket } from 'socket.io-client';
