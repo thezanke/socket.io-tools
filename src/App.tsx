@@ -1,4 +1,4 @@
-import { PrimaryButton, Stack, Text, TextField, useTheme } from '@fluentui/react';
+import { FontIcon, PrimaryButton, Stack, Text, TextField, useTheme } from '@fluentui/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import JsonView from 'react-json-view';
 import { io, Socket } from 'socket.io-client';
@@ -68,13 +68,19 @@ const MessageRow = (props: { message: Message; handleEventNameClick: (eventName:
 
   return (
     <tr>
-      <td style={{ backgroundColor: eventNameBgColor }} align="right">
+      <td style={{ backgroundColor: eventNameBgColor }} align="center">
         <Text
+          block
           style={{ fontWeight: 'bold', fontStyle: 'italic', cursor: 'pointer', padding: 5 }}
           onClick={() => handleEventNameClick(message.eventName)}
         >
           {message.eventName}
         </Text>
+        {message.origin === MessageOrigin.socket ? (
+          <FontIcon aria-label="Back" iconName="back" style={{ fontWeight: 'bold' }} />
+        ) : (
+          <FontIcon aria-label="Forward" iconName="forward" style={{ fontWeight: 'bold' }} />
+        )}
       </td>
       <td>{messageBody}</td>
     </tr>
@@ -138,7 +144,7 @@ const App = () => {
 
   return (
     <Stack
-      tokens={{ maxWidth: 800, childrenGap: 5 }}
+      tokens={{ maxWidth: '90vw', childrenGap: 5 }}
       style={{ margin: '0 auto', position: 'relative', maxHeight: '90vh', minHeight: 500 }}
     >
       <Stack.Item>
@@ -206,7 +212,7 @@ const App = () => {
             </Stack.Item>
             <Stack.Item>
               <PrimaryButton type="submit" onClick={handleSubmit}>
-                Send
+                <FontIcon aria-label="Forward" iconName="forward" style={{ fontWeight: 'bold' }} />
               </PrimaryButton>
             </Stack.Item>
           </Stack>
